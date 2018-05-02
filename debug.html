@@ -1,0 +1,38 @@
+<html lang = "en">
+    <head>
+        <title>debug</title>
+        <meta charset = "UTF-8">
+        <script src = "library/gui_util.js"></script>
+        <script src = "library/validator_types.js"></script>
+        <script src = "library/validator_mapping.js"></script>
+        <script src = "library/validator_instructions.js"></script>
+
+    </head>
+    <body>
+        <form action="">
+            first name: <input type="text" />
+            <div id = "firstName_err"></div>
+            last name: <input type "text" />
+            <input type="submit" value = "send">
+            <div id = "lastName_err"></div>
+        </form>
+        <script>
+            //test
+            window.addEventListener('load', function(){
+                var validator = gui_util.validator, debug = 0
+                ,input = 
+                {
+                    first_name:''
+                    , last_name:''
+                }
+                validator.validate(input);
+                
+                if(validator.length !== 0)
+                {
+                  for(var debug = 0; debug < validator.errors.length; debug++) 
+                    console.log('error: ' + validator.errors[debug].instruction);
+                }
+            });
+        </script>
+    </body>
+</html>
