@@ -9,29 +9,37 @@
 
     </head>
     <body>
-        <form action="">
-            first name: <input type="text" />
-            <div id = "firstName_err"></div>
-            last name: <input type "text" />
+        <form id = "debug_form" action="debug_success.html" onsubmit="return check();">
+
+            <div id = "first_name_err" class = "error"></div>
+            first name: <input type="text" name = "first_name" class="validator" />
+            
+            <div id = "last_name_err" class = "error"></div>
+            last name: <input type "text" name = "last_name" class="validator" />
             <input type="submit" value = "send">
-            <div id = "lastName_err"></div>
+            
         </form>
         <script>
             //test
             window.addEventListener('load', function(){
-                var validator = gui_util.validator, debug = 0
-                ,input = 
-                {
-                    first_name:''
-                    , last_name:''
+
+                function check(){
+                    var validator = gui_util.validator
+                    ,targetHtmlCollection = document.forms['debug_form'].elements
+                    ,fname = targetHtmlCollection['first_name'].value
+                    ,lname = targetHtmlCollection['last_name'].value;
+                    
+                    input = 
+                    {
+                        first_name:fname
+                        ,last_name:lname
+                    };
+
+                    return validator.validate(input); 
                 }
-                validator.validate(input);
-                
-                if(validator.length !== 0)
-                {
-                  for(var debug = 0; debug < validator.errors.length; debug++) 
-                    console.log('error: ' + validator.errors[debug].instruction);
-                }
+
+                window.check = check;
+
             });
         </script>
     </body>

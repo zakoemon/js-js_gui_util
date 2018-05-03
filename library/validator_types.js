@@ -13,6 +13,7 @@
         //first_name
         firstNameTooLong:function(member, object)
         {
+            if(!member) return false;
             return member.length > 20;
         }
         ,firstNameNotNull:function(member, object)
@@ -27,6 +28,7 @@
         //last_name
         ,lastNameTooLong:function(member, object)
         {
+            if(!member) return false;
             return member.length > 20;
         }
         ,lastNameNotNull:function(member, object)
@@ -35,7 +37,7 @@
         }
         ,lastNameFirstNameAlsoRequired:function(member, object)
         {
-            return (member && !object.first_name)
+            return (member && !object.first_name);
         }
     }
     

@@ -1,5 +1,8 @@
 var gui_util = gui_util || 
 {
+    /**
+     * Add class="error" attribute to elements on which you want error messages
+     */
     validator:
     {
         /**
@@ -11,6 +14,35 @@ var gui_util = gui_util ||
         ,mapping:{}
 
         ,errors:[]
+
+        ,errorHtmlCollection:null
+
+        /**
+         * If there are errors, 
+         * this method casts error messages to HTML
+         */
+        ,castToHtml:function()
+        {
+            this.resetCastedHtml();
+
+            if(this.errorHtmlCollection){
+                var index;
+                for(index = 0; index < this.errors.length; index++){
+                    console.log(this.errors[index].id + ':' + this.errors[index].instruction);
+                    this.errorHtmlCollection[this.errors[index].id].innerHTML += this.errors[index].instruction + '<br/>';
+                }
+            }
+        }
+
+        /**
+         * reset error messages laid on HTML before casting another ones
+         */
+        ,resetCastedHtml:function(){
+            var index;
+            for(index = 0; index < this.errorHtmlCollection.length; index++){
+                this.errorHtmlCollection.item(index).innerHTML = '';
+            }         
+        }
 
         /**
          * @return boolean
@@ -26,6 +58,9 @@ var gui_util = gui_util ||
          * @param object data_object 
          * {key:value, key:value,...,key:value}
          * 
+         * @return boolean
+         * if true, means "no error"
+         * 
          * After executing this method, 
          * check if there are errors by executing 'hasError()'
          */
@@ -34,6 +69,7 @@ var gui_util = gui_util ||
             var data_member, type, validate, instruction, index;
 
             this.errors = [];
+            if(!this.errorHtmlCollection) this.errorHtmlCollection = document.getElementsByClassName('error');
 
             for(data_member in data_object)
             {              
@@ -60,6 +96,18 @@ var gui_util = gui_util ||
                     }
                 }
             } 
+
+            if(this.errors.length !== 0)
+            {
+                this.castToHtml();
+                console.log('return false');
+                return false;
+            }
+            else
+            {
+                console.log('return true');                
+                return true;
+            }
         }
     }
 };

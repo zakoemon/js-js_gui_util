@@ -12,36 +12,37 @@
         //first_name
         "firstNameTooLong":
         {
+            //error message
             instruction:'\"first name\" must be within 20 characters'
-            //Planning to add a feature that casts errors onto html automatically.
-            ,id:''
+            //element's id on which you want to cast the error message
+            ,id:'first_name_err'
         }
         ,"firstNameNotNull":
         {
             instruction:'\"first name\" must not be null'
-            ,id:''
+            ,id:'first_name_err'
         }
         ,"firstNameLastNameAlsoRequired":
         {
             instruction:'\"Last name\" must be also filled'
-            ,id:''
+            ,id:'first_name_err'
         }
 
         //last_name
         ,"lastNameTooLong":
         {
             instruction:'\"Last name\" must be within 20 characters'
-            ,id:''
+            ,id:'last_name_err'
         }
         ,"lastNameNotNull":
         {
             instruction:'\"Last name\" must not be null'
-            ,id:''
+            ,id:'last_name_err'
         }
         ,"lastNameFirstNameAlsoRequired":
         {
             instruction:'\"first name\" must be also filled'
-            ,id:''
+            ,id:'last_name_err'
         }
     }
     
