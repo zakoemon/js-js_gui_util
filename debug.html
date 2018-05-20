@@ -2,10 +2,7 @@
     <head>
         <title>debug</title>
         <meta charset = "UTF-8">
-        <script src = "library/gui_util.js"></script>
-        <script src = "library/validator_types.js"></script>
-        <script src = "library/validator_mapping.js"></script>
-        <script src = "library/validator_instructions.js"></script>
+
 
     </head>
     <body>
@@ -19,6 +16,7 @@
             <input type="submit" value = "send">
             
         </form>
+
         <script>
             //test
             window.addEventListener('load', function(){
@@ -40,7 +38,13 @@
 
                 window.check = check;
 
+                // console.log('[mapping]'+gui_util.validator.mapping['first_name']);
+                // console.log('[instructions]'+gui_util.validator.instructions['firstNameTooLong']);
+                // console.log('[types]'+gui_util.validator.types['firstNameTooLong']);
+
             });
         </script>
+        <script src = "library/gui_util.js"></script>
+        <script src = "library/validator_config.js"></script>
     </body>
 </html>
