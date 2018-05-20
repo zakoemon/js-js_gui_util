@@ -127,44 +127,4 @@ var gui_util = gui_util ||
         };
 
     })()
-    ,sorter:(function()
-    {
-
-        function _swap(a, b){
-            var tmp = a;
-            a = b;
-            b = tmp;
-        }
-
-        function sort(list, callback)
-        {
-            if(typeof callback !== Function)
-            {
-                throw 'the second param should be a function';
-            }
-
-            var index = 0;
-            for(index; index < list.length; index++)
-            {
-                var innerIndex = list.length - 1;
-                for(innerIndex; index < innerIndex; innerIndex--)
-                {
-                    if(callback(list[index], list[index-1]) === 0)
-                    {
-                        continue;
-                    }
-                    else if(callback(list[index], list[index-1]) === 1)
-                    {
-                        _swap(list[index], list[index-1]);
-                    }
-                }
-            }
-        }
-
-        return 
-        {
-            sort:sort
-        };
-
-    })()
 };
